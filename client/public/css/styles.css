@@ -1,0 +1,13 @@
+#addFormContainer {
+  background-color: grey;
+  color: white;
+  padding: 5px;
+}
+
+#listContainer {
+  background-color: lightblue;
+}
+
+.form-actions {
+  text-align: center;
+}
