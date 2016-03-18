@@ -1,16 +1,30 @@
-// Require express
-var express = require('express');
+var express         = require('express'),
+    morgan          = require('morgan'),
+    mongoose        = require('mongoose'),
+    bodyParser      = require('body-parser'),
+    app             = express(),
+    indexRouter     = require('./server/routes/index.js'),
+    apiAuthRouter   = require('./server/routes/api/auth.js'),
+    apiUsersRouter  = require('./server/routes/api/users.js');
 
-// Instantiate Express
-var app = express();
+// connect to db
+mongoose.connect( process.env.MONGOLAB_URI || "mongodb://localhost/passport101" );
 
-// Serve static files
+// log requests to STDOUT
+app.use(morgan('dev'));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// parse application/json
+app.use(bodyParser.json());
+
+// Set static file root folder
 app.use(express.static('client/public'));
 
-// Main route
-app.get('/', function(req, res, next) {
-  res.sendFile( __dirname + '/client/public/views/index.html' );
-});
+app.use('/', indexRouter);
+app.use('/api/auth', apiAuthRouter);
+app.use('/api/users', apiUsersRouter);
 
 // Listen on port for connections
 var port = process.env.PORT || 3000;

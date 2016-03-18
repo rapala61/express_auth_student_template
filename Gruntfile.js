@@ -3,33 +3,34 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
-    babel: {
-      options: {
-        plugins: ['transform-react-jsx'],
-        presets: ['es2015', 'react']
+    pkg: grunt.file.readJSON('package.json'),
+    browserify: {
+      dist: {
+        files: {
+          'client/public/js/dest/react_components.js': ['client/public/js/src/react_components/*/main.jsx']
+        }
       },
-      jsx: {
-        files: [{
-          expand: true,
-          cwd: 'client/public/js/dist/', // Custom folder
-          src: ['*.jsx'],
-          dest: 'client/public/js/src/', // Custom folder
-          ext: '.js'
-        }]
+      options: {
+        transform: [
+          ["babelify", {presets: ["react"]}]
+        ]
       }
     },
-    watch: {
-      scripts: {
-        files: ['**/*.jsx'],
-        task: ['babel'],
-        options: {
-          spawn: true
-        }
-      }
-    }
+    // watch: {
+    //   scripts: {
+    //     files: ['**/*.jsx'],
+    //     task: ['browserify'],
+    //     options: {
+    //       spawn: true
+    //     }
+    //   }
+    // }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  // load plugins
+  // grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('default', ['babel']);
+  // load custom tasks
+  grunt.registerTask('default', ['browserify']);
 }

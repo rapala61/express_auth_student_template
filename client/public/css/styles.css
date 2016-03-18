@@ -4,10 +4,33 @@
   padding: 5px;
 }
 
+header {
+  margin-bottom: 5px;
+}
+
 #listContainer {
   background-color: lightblue;
 }
 
 .form-actions {
   text-align: center;
+}
+
+.logo-container {
+  text-align: center;
+}
+
+.links li {
+  display: inline-block;
+  font-size: 2em;
+}
+
+.va-container {
+  display: table;
+  height: 50px;
+}
+
+.va-element {
+  display: table-cell;
+  vertical-align: middle;
 }
