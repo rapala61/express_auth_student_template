@@ -9,8 +9,9 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.1/js.cookie.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" charset="utf-8"></script>
-    <script src="/js/dest/react_components.js" charset="utf-8"></script>
+    <script src="/js/scripts.js" charset="utf-8"></script>
   </head>
   <body>
     <header>
@@ -19,11 +20,11 @@
           &nbsp
         </div>
         <div class="col-md-4 logo-container va-container">
-          <h1 class="va-element">Bucket Directory</h1>
+          <h1 class="va-element">Remind me</h1>
         </div>
         <div class="col-md-4 va-container">
           <ul class="links va-element">
-            <a href="#"><li>Login</li></a>
+            <!-- Links -->
           </ul>
         </div>
       </div>
@@ -31,6 +32,54 @@
 
     <div class="main container">
 
+      <div class="row">
+        <div id="alert-msg" class="col-md-4 col-centered" style="display: none;">
+          <!-- Msg goes here -->
+        </div>
+      </div>
+      <div id="logged-in-content" class="container row" style="display:none;">
+        <div class="col-md-6 col-centered">
+          <h1>You are logged In!</h1>
+          <a href="#" id="log-out-link">Logout</a>
+        </div>
+      </div>
+      <div class="forms container row">
+        <div class="col-md-4 col-centered">
+
+          <!-- Log In -->
+          <form id="login-form">
+            <div class="form-group">
+              <input type="text" name="username" value="" placeholder="username">
+              <input type="password" name="password" value="" placeholder="password">
+            </div>
+            <div class="form-group">
+              <a href="#" id="sign-up-link">haven't sign-up yet? click here</a>
+            </div>
+            <button type="submit" class="btn btn-default" name="button">Log in</button>
+          </form>
+
+          <!-- Sign up -->
+          <form id="sign-up-form" class="hidden">
+            <div class="form-grup">
+              <input type="text" name="username" value="" placeholder="username">
+              <input type="text" name="email" value="" placeholder="email">
+              <input type="password" name="password" value="" placeholder="password">
+              <input type="password" name="password_confirm" value="" placeholder="password confirm">
+            </div>
+            <div class="form-group">
+              <a href="#" id="login-link">Already have an account? click here</a>
+            </div>
+            <button type="submit" class="btn btn-default" name="button">Sign up</button>
+          </form>
+
+          <!-- Items Form -->
+        </div>
+      </div>
+
+
+
+
     </div>
+
   </body>
 </html>

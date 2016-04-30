@@ -7,16 +7,21 @@ passport.use( new LocalStrategy(
     User.findOne({ username: username }, function( err, dbUser ) {
       if (err) { return done(err); }
       if (!dbUser) {
-        return done(null, false, { message: 'Incorrect username.' });
+        // If we want to send back flash messages with a description of the error
+        // We would need to install express-flash for this to work
+
+        // return done(null, false, { message: 'Incorrect username.' });
+        return done(null, false);
       }
 
       if (!dbUser.authenticate(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
+        // return done(null, false, { message: 'Incorrect password.' });
+        return done(null, false);
       }
 
       return done(null, dbUser);
     });
-  }
-));
+  })
+);
 
 module.exports = passport;

@@ -19,6 +19,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
+// flash messages, NEEDS express-flash
+// app.use(flash())
+
 // Set static file root folder
 app.use(express.static('client/public'));
 

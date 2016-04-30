@@ -1,15 +1,5 @@
-#addFormContainer {
-  background-color: grey;
-  color: white;
-  padding: 5px;
-}
-
 header {
   margin-bottom: 5px;
-}
-
-#listContainer {
-  background-color: lightblue;
 }
 
 .form-actions {
@@ -24,6 +14,30 @@ header {
   display: inline-block;
   font-size: 2em;
 }
+
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+#login-form, #sign-up-form {
+  padding: 10px;
+  text-align: center;
+  background-image: url('../img/sticky.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#logged-in-content {
+  text-align: center;
+}
+
+#alert-msg {
+  color: red;
+  text-align: center;
+}
+/* Vertical alignment style */
 
 .va-container {
   display: table;
