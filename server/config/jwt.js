@@ -1,3 +1,0 @@
-module.exports = {
-  'superSecret': 'bailatucuerpoalegriamacarena'
-}

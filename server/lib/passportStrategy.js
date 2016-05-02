@@ -1,6 +1,5 @@
 var User          = require('../models/user.js'),
     passport      = require('passport'),
-    jwtConfig     = require('../config/jwt.js'),
     LocalStrategy = require('passport-local').Strategy,
     JwtStrategy   = require('passport-jwt').Strategy,
     ExtractJwt    = require('passport-jwt').ExtractJwt,
@@ -15,7 +14,7 @@ JwtOpts.jwtFromRequest = function(req) {
   return token;
 };
 
-JwtOpts.secretOrKey = jwtConfig.superSecret;
+JwtOpts.secretOrKey = process.env.JWT_SECRET;
 
 // TODO: Not needed?
 // JwtOpts.issuer = "accounts.examplesoft.com";

@@ -1,4 +1,5 @@
-var express         = require('express'),
+var dotEnv          = require('dotenv').config(),
+    express         = require('express'),
     morgan          = require('morgan'),
     mongoose        = require('mongoose'),
     bodyParser      = require('body-parser'),
@@ -9,7 +10,8 @@ var express         = require('express'),
     apiUsersRouter  = require('./server/routes/api/users.js');
 
 // connect to db
-mongoose.connect( process.env.MONGOLAB_URI || "mongodb://localhost/passport101" );
+// process.env.MONGOLAB_URI is needed for when we deploy to Heroku
+mongoose.connect( process.env.MONGOLAB_URI || "mongodb://localhost/auth_template_app" );
 
 // log requests to STDOUT
 app.use(morgan('dev'));
@@ -34,6 +36,7 @@ app.use('/api/auth', apiAuthRouter);
 app.use('/api/users', apiUsersRouter);
 
 // Listen on port for connections
+// process.env.PORT is needed for when we deploy to Heroku
 var port = process.env.PORT || 3000;
 app.listen( port, function() {
   console.log("free tacos at 3000");
