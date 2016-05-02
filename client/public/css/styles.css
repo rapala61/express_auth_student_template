@@ -1,5 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 header {
   margin-bottom: 5px;
+}
+
+li {
+  list-style-type: none;
 }
 
 .form-actions {
@@ -14,7 +23,6 @@ header {
   display: inline-block;
   font-size: 2em;
 }
-
 
 .col-centered{
     float: none;
@@ -37,6 +45,11 @@ header {
   color: red;
   text-align: center;
 }
+
+#users-section {
+  margin-top: 50px;
+}
+
 /* Vertical alignment style */
 
 .va-container {

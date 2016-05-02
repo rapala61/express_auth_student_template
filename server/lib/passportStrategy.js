@@ -1,6 +1,41 @@
-var User = require('../models/user.js'),
-    passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
+var User          = require('../models/user.js'),
+    passport      = require('passport'),
+    jwtConfig     = require('../config/jwt.js'),
+    LocalStrategy = require('passport-local').Strategy,
+    JwtStrategy   = require('passport-jwt').Strategy,
+    ExtractJwt    = require('passport-jwt').ExtractJwt,
+    JwtOpts       = {};
+
+
+JwtOpts.jwtFromRequest = function(req) {
+  var token = null;
+  if (req && req.cookies) {
+      token = req.cookies['jwt_token'];
+  }
+  return token;
+};
+
+JwtOpts.secretOrKey = jwtConfig.superSecret;
+
+// TODO: Not needed?
+// JwtOpts.issuer = "accounts.examplesoft.com";
+// JwtOpts.audience = "yoursite.net";
+
+passport.use(new JwtStrategy(JwtOpts, function(jwt_payload, done) {
+    console.log(jwt_payload);
+
+    User.findOne({id: jwt_payload.sub}, function(err, user) {
+        if (err) {
+            return done(err, false);
+        }
+        if (user) {
+            done(null, user);
+        } else {
+            done(null, false);
+            // or you could create a new account
+        }
+    });
+}));
 
 passport.use( new LocalStrategy(
   function( username, password, done ) {

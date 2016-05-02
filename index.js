@@ -2,6 +2,7 @@ var express         = require('express'),
     morgan          = require('morgan'),
     mongoose        = require('mongoose'),
     bodyParser      = require('body-parser'),
+    cookieParser    = require('cookie-parser'),
     app             = express(),
     indexRouter     = require('./server/routes/index.js'),
     apiAuthRouter   = require('./server/routes/api/auth.js'),
@@ -21,6 +22,9 @@ app.use(bodyParser.json());
 
 // flash messages, NEEDS express-flash
 // app.use(flash())
+
+// This is how we read the cookies sent over from the browser
+app.use(cookieParser());
 
 // Set static file root folder
 app.use(express.static('client/public'));

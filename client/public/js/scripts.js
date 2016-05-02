@@ -96,23 +96,50 @@ auth.showAlert = function(msg) {
 auth.setLoggedInState = function() {
   $('.forms.container').hide();
   $('#logged-in-content').fadeIn(1000);
+  auth.users.init();
 }
 
 auth.setLoggedOutState = function() {
   $('#logged-in-content').hide();
   $('.forms.container').fadeIn(1000);
-
 }
 
 auth.checkLoggedInStatus = function() {
-  var token = Cookies.get('jwt_token');
-
-  console.log(token);
+  var token = auth.getToken();
 
   if(token) {
     auth.setLoggedInState();
   }else {
     auth.setLoggedOutState();
+  }
+}
+
+auth.getToken = function() {
+  return Cookies.get('jwt_token');
+}
+
+auth.users = {
+  init: function() {
+
+    auth.users.getAll()
+      .done(function(users) {
+        auth.users.renderUsers(users);
+      })
+      .fail(function(jqHXR) {
+        console.log(jqXHR);
+        // Error handling goes here
+      });
+  },
+  getAll: function() {
+    return $.getJSON('/api/users');
+  },
+  renderUsers: function(users) {
+    var $container = $('#users-container');
+    users.forEach(function(user) {
+      var $user = $('<li>');
+      $user.html("Username: " + user.username + " <br/>Email: " + user.email);
+      $container.append($user);
+    })
   }
 }
 
