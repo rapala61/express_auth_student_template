@@ -13,7 +13,7 @@ usersRouter.use(passport.initialize());
 // We would also have to add the failureFlash: true option here, exp: { session: false, failureFlash : true }
 usersRouter.post('/', passport.authenticate('local', { session: false }), function(req, res, next) {
   var token = jwt.sign(req.user, process.env.JWT_SECRET, {
-    expiresInMinutes: 1440 // expires in 24 hours
+    expiresIn: 1440 // expires in 24 hours
   });
   res.json({ token: token });
 });
