@@ -10,8 +10,9 @@ var dotEnv          = require('dotenv').config(),
     apiUsersRouter  = require('./server/routes/api/users.js');
 
 // connect to db
-// process.env.MONGOLAB_URI is needed for when we deploy to Heroku
-mongoose.connect( process.env.MONGOLAB_URI || "mongodb://localhost/auth_template_app" );
+// process.env.MONGOLAB_URI is DEPRECATED
+// process.env.MONGODB_URI is needed for when we deploy to Heroku
+mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/auth_template_app" );
 
 // log requests to STDOUT
 app.use(morgan('dev'));

@@ -21,7 +21,6 @@ JwtOpts.secretOrKey = process.env.JWT_SECRET;
 // JwtOpts.audience = "yoursite.net";
 
 passport.use(new JwtStrategy(JwtOpts, function(jwt_payload, done) {
-    console.log(jwt_payload);
 
     // #3 issue:  Passport-JWT Needs to target users based on payload
     User.findOne({username: jwt_payload._doc.username}, function(err, user) {
