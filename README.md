@@ -9,3 +9,6 @@ Once you have it cloned in your localhost from your fork, make sure you implemen
 
  `mongoose.connect( process.env.MONGOLAB_URI || "mongodb://localhost/your_database_name_goes_here" );
 `
+## Licensing
+All content is licensed under a CC­BY­NC­SA 4.0 license.
+All software code is licensed under GNU GPLv3. For commercial use or alternative licensing, please contact legal@ga.co.
